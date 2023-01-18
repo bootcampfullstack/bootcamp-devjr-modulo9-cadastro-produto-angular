@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Category } from 'src/app/interfaces/Category';
 
 @Component({
   selector: 'app-product',
@@ -7,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductComponent implements OnInit {
 
+  @Input()
+  categories : Category [] = [];
+  
   constructor() { }
 
   ngOnInit(): void {
