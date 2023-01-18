@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/interfaces/Category';
 import { Product } from 'src/app/interfaces/Product';
 import { CategoryService } from 'src/app/services/category.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-products',
@@ -10,23 +11,38 @@ import { CategoryService } from 'src/app/services/category.service';
 })
 export class ProductsComponent implements OnInit {
 
-  categories : Category [] = [];
+  categories: Category[] = [];
 
-  product : Product = {} as Product;
-  products : Product[] = [];
+  product: Product = {} as Product;
+  products: Product[] = [];
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService, private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.categories = this.categoryService.getCategories();
+    this.loadProducts();
+    this.loadCategories();;
   }
 
-  saveProduct(){
-    this.product.id = this.products.length + 1;
-    this.products.push(this.product);
-    this.product = {} as Product;
+  loadProducts() {
+    this.productService.getProducts().subscribe({
+      next: data => { this.products = data }k
+    })
+  }
 
-    console.log("Novo produto cadastrado. Total produtos: " +  this.products.length);
+  loadCategories() {
+    this.categoryService.getCategories().subscribe({
+      next: data => { this.categories = data }
+    });
+  }
+
+  saveProduct() {
+    this.productService.save(this.product).subscribe({
+      next: data => {
+        this.products.push(data);
+        this.product = {} as Product;
+      }
+    });
+
   }
 
 }
