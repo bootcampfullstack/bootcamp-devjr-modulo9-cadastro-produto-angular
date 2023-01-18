@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/interfaces/Category';
 import { Product } from 'src/app/interfaces/Product';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-products',
@@ -9,19 +10,15 @@ import { Product } from 'src/app/interfaces/Product';
 })
 export class ProductsComponent implements OnInit {
 
-  categories : Category [] = [
-    {id:1,name:"Produção Própria"},
-    {id:2,name:"Nacional"},
-    {id:3,name:"Importado"},
-    {id:4,name:"Premium"},
-  ];
+  categories : Category [] = [];
 
   product : Product = {} as Product;
   products : Product[] = [];
 
-  constructor() { }
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
+    this.categories = this.categoryService.getCategories();
   }
 
   saveProduct(){
