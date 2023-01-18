@@ -27,8 +27,8 @@
                         <select class="form-select" aria-label="Selecione uma categoria" name="category"  id="selectCategory" required
                         [(ngModel)]="product.category"
                         >
-                            <option *ngFor="let c of categories"  [ngValue]="c">
-                                {{c.name}}
+                            <option *ngFor="let cat of categories"  [ngValue]="cat">
+                                {{cat.name}}
                             </option>
 
                         </select>
