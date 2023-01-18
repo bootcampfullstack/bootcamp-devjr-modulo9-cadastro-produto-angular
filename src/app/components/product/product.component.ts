@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Category } from 'src/app/interfaces/Category';
 import { Product } from 'src/app/interfaces/Product';
 
@@ -14,6 +14,9 @@ export class ProductComponent implements OnInit {
 
   @Input()
   product ?: Product;
+
+  @Output()
+  saveEmitter = new EventEmitter();
   
   constructor() { }
 
@@ -21,7 +24,7 @@ export class ProductComponent implements OnInit {
   }
 
   save(){
-    console.log(this.product);
+    this.saveEmitter.emit();
   }
 
 }
