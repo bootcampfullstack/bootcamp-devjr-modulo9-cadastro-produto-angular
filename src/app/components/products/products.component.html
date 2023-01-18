@@ -1,7 +1,7 @@
 <div class="container mt-3">
 
     <app-product [categories]="categories" [product]="product" (saveEmitter)="saveProduct()" ></app-product>
-
+    
     <div class="display-6">
         Produtos Cadastrados:
     </div>
@@ -23,7 +23,7 @@
                         <td>{{p.id}}</td>
                         <td>{{p.name}}</td>
                         <td>{{p.description}}</td>
-                        <td>{{p.price}}</td>
+                        <td>{{p.price | number: '1.2-2'}}</td>
                         <td>{{p.category.name}}</td>
                         <td>
                             <span *ngIf="p.promotion"  class='badge bg-success text-white me-1'>P</span>
