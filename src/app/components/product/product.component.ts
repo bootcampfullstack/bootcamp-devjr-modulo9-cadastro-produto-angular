@@ -12,7 +12,8 @@ export class ProductComponent implements OnInit {
   @Input()
   categories : Category [] = [];
 
-  product : Product = {} as Product;
+  @Input()
+  product ?: Product;
   
   constructor() { }
 
