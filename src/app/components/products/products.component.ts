@@ -20,12 +20,12 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadProducts();
-    this.loadCategories();;
+    this.loadCategories();
   }
 
   loadProducts() {
     this.productService.getProducts().subscribe({
-      next: data => { this.products = data }k
+      next: data => { this.products = data }
     })
   }
 
